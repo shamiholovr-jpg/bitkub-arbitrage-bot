@@ -121,7 +121,7 @@ export async function importAllData(data: ExportedData): Promise<void> {
 }
 
 export async function clearAllData(): Promise<void> {
-  await AsyncStorage.removeMany([
+  await AsyncStorage.multiRemove([
     KEYS.entries,
     KEYS.customCategories,
     KEYS.hiddenDefaultCategoryIds,
