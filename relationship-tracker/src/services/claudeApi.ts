@@ -73,6 +73,11 @@ export async function askAdvisor(apiKey: string, ctx: AdvisorRequestContext): Pr
         'content-type': 'application/json',
         'x-api-key': apiKey,
         'anthropic-version': ANTHROPIC_VERSION,
+        // Required for the request to succeed when this runs as a web page
+        // (browser) rather than a native app — native fetch isn't subject to
+        // CORS, but a browser calling api.anthropic.com directly needs this
+        // explicit opt-in. Harmless on native.
+        'anthropic-dangerous-direct-browser-access': 'true',
       },
       body: JSON.stringify(body),
     });
